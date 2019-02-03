@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public class NumbersCreator {
 
     //constant provides the maximum amount of values that the arrayList will have.
-    static Integer MAX_INTEGERS = 100;
+    private final static Integer MAX_INTEGERS = 100;
 
-    //arraList is established here and set to public so that it may be called by other classes.
+    //arrayList is established here and set to public so that it may be called by other classes.
     public static ArrayList<Integer> oneHundredDigits = new ArrayList<>(MAX_INTEGERS);
 
     /**
