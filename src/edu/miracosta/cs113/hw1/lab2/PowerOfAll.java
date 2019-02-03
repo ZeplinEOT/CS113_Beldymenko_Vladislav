@@ -2,7 +2,7 @@ package edu.miracosta.cs113.hw1.lab2;
 
 import java.util.Scanner;
 
-public class Main extends PowerVerifier{
+public class PowerOfAll extends PowerVerifier {
 
     public static void main(String[] args) {
 
