@@ -19,8 +19,8 @@ public class AssistantJack {
 	/**
 	 * The default constructor but will not be called from outside. 
 	 */
-	private AssistantJack()
-	{
+	private AssistantJack() {
+
 		this.timesAsked = 0;
 		this.correctTheory = null;
 	}
