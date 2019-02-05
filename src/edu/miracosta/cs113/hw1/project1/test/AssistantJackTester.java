@@ -10,7 +10,7 @@ public class AssistantJackTester {
 	@Test
 	public void testCheckAnswerIntIntInt() {
 		AssistantJack aj = new AssistantJack(1);
-		assertTrue(aj.checkAnswer(1, 1, 1) == 0);		
+		assertTrue(aj.checkAnswer(1, 1, 1) == 0);
 	}
 
 	@Test

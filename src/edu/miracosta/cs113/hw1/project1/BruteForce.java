@@ -2,131 +2,119 @@ package edu.miracosta.cs113.hw1.project1;
 
 public class BruteForce {
 
-	private static int setWeapon, setLocation, setMurderer;
-
 	public static void main(String[] args) {
 
 		AssistantJack jack = new AssistantJack(0);
 
-		int foundWeapon;
-		int foundLocation;
-		int foundMurderer;
-
+		// all ints declared
 		int checkAnswerCounter = 0;
+		int checkAnswer = 1;
+		int weapon = 1, location = 1, murderer = 1;
+		int setWeapon = 1, setLocation = 1, setMurderer = 1;
 
-		for (int murderer = 1; murderer <= TheoryItem.TOTAL_MURDERS; murderer++) {
+		//while loop doesn't stop until the correct set of answers is reached.
+		while (checkAnswer != 0) {
 
-			for (int location = 1; location <= TheoryItem.TOTAL_LOCATIONS; location++) {
+			//answer is checked.
+			checkAnswer = jack.checkAnswer(weapon, location, murderer);
 
-				for (int weapon = 1; weapon <= TheoryItem.TOTAL_WEAPONS; weapon++) {
+			System.out.println(murderer + " " + location + " " + weapon + " Start");
 
-					int checkAnswer = jack.checkAnswer(weapon, location, murderer);
+			// if checks if answer set is fully correct, and if yes, breaks the loop.
+			if (checkAnswer == 0) {
 
-					if (checkAnswer == 0) {
+				setWeapon = weapon;
+				setLocation = location;
+				setMurderer = murderer;
+
+				break;
+			} else {
+
+				// checks for error in 1.
+				if (checkAnswer == 1) {
+
+					checkAnswerCounter++;
+					System.out.println("Check Answer " + checkAnswer);
+
+					weapon++;
+
+					checkAnswer = jack.checkAnswer(weapon, location, murderer);
+
+					if (checkAnswer == 1) {
+
+						checkAnswerCounter++;
+						System.out.println("Check Answer " + checkAnswer);
+
+					} else {
 
 						setWeapon = weapon;
-						setLocation = location;
-						setMurderer = murderer;
+						System.out.println("Found weapon!");
 					}
-					else {
 
-						System.out.println("Check Answer = " + checkAnswer);
+					// checks for error in 2.
+				} else if (checkAnswer == 2) {
+
+					checkAnswerCounter++;
+					System.out.println("Check Answer " + checkAnswer);
+
+					location++;
+
+					checkAnswer = jack.checkAnswer(weapon, location, murderer);
+
+					if (checkAnswer == 2) {
+
 						checkAnswerCounter++;
+						System.out.println("Check Answer " + checkAnswer);
+
+					} else {
+
+						setLocation = location;
+						System.out.println("Found location!");
 					}
 
-//					if (checkAnswer == 1) {
-//
-//						checkAnswerCounter++;
-//
-//						System.out.println("Check Answer = " + checkAnswer);
-//
-//						for (weapon = 1; weapon <= TheoryItem.TOTAL_WEAPONS; weapon++) {
-//
-//							checkAnswer = jack.checkAnswer(weapon, location, murderer);
-//
-//							if (checkAnswer == 0) {
-//
-//								setWeapon = weapon;
-//								setMurderer = murderer;
-//								setLocation = location;
-//
-//							} else {
-//
-//								System.out.println("Check Answer = " + checkAnswer);
-//								checkAnswerCounter++;
-//							}
-//						}
-//					} else if (checkAnswer == 2) {
-//
-//						System.out.println("Check Answer = " + checkAnswer);
-//
-//						foundWeapon = weapon;
-//						foundMurderer = murderer;
-//
-//						setWeapon = foundWeapon;
-//						setMurderer = foundMurderer;
-//
-//						checkAnswerCounter++;
-//
-//						for (location = 2; location <= TheoryItem.TOTAL_LOCATIONS; location++) {
-//
-//							checkAnswer = jack.checkAnswer(foundWeapon, location, foundMurderer);
-//
-//							if (checkAnswer == 0) {
-//
-//								setLocation = location;
-//
-//							} else {
-//
-//								System.out.println("Check Answer = " + checkAnswer);
-//
-//								checkAnswerCounter++;
-//							}
-//						}
-//					} else if (checkAnswer == 3) {
-//
-//						System.out.println("Check Answer = " + checkAnswer);
-//
-//						checkAnswerCounter++;
-//
-//						foundWeapon = weapon;
-//						foundLocation = location;
-//
-//						setWeapon = foundWeapon;
-//						setLocation = foundLocation;
-//
-//						for (murderer = 2; murderer <= TheoryItem.TOTAL_MURDERS; murderer++) {
-//
-//							checkAnswer = jack.checkAnswer(foundWeapon, foundLocation, murderer);
-//
-//							if (checkAnswer == 0) {
-//
-//								setMurderer = murderer;
-//
-//							} else {
-//
-//								System.out.println("Check Answer = " + checkAnswer);
-//
-//								checkAnswerCounter++;
-//							}
-//						}
-//					} else {
-//
-//						setMurderer = murderer;
-//						setWeapon = weapon;
-//						setLocation = location;
-//					}
+					// checks for error in 3.
+				} else if (checkAnswer == 3) {
+
+					checkAnswerCounter++;
+					System.out.println("Check Answer " + checkAnswer);
+
+					murderer++;
+
+					checkAnswer = jack.checkAnswer(weapon, location, murderer);
+
+					if (checkAnswer == 3) {
+
+						checkAnswerCounter++;
+						System.out.println("Check Answer " + checkAnswer);
+
+					} else {
+
+						setMurderer = murderer;
+						System.out.println("Found murderer!");
+					}
+
+					//third answer check.
+				} else {
+
+					setWeapon = weapon;
+					setLocation = location;
+					setMurderer = murderer;
+
+					break;
 				}
 			}
 		}
 
+		//check answer counter prints the amount of times 'CheckAnswer' was called.
 		System.out.println("\nThe program called 'CheckAnswer' " + checkAnswerCounter + " times\n");
 
+		//answer printed as strings.
 		System.out.println("The correct answer is " +
 				TheoryItem.getPersonName(setMurderer) + "," +
 				TheoryItem.getLocationName(setLocation) + "," +
 				TheoryItem.getWeaponName(setWeapon));
 
+		//answers printed as integers.
 		System.out.println("The correct answer is " +
 				setMurderer + "," +
 				setLocation + "," +
